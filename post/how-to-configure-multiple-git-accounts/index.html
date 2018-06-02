@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.41" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>如何在Mac上配置两个git帐号 &middot; 侬伢子</title>
+
+  
+  <link type="text/css" rel="stylesheet" href="https://parkeryao.github.iocss/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="https://parkeryao.github.iocss/poole.css">
+  <link type="text/css" rel="stylesheet" href="https://parkeryao.github.iocss/syntax.css">
+  <link type="text/css" rel="stylesheet" href="https://parkeryao.github.iocss/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="" rel="alternate" type="application/rss+xml" title="侬伢子" />
+
+  
+</head>
+
+  <body class=" ">
+  <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="https://parkeryao.github.io"><h1>侬伢子</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li><a href="https://parkeryao.github.io">Home</a> </li>
+      
+    </ul>
+
+    <p>&copy; 2018. All rights reserved. </p>
+  </div>
+</div>
+
+    <div class="content container">
+    <div class="post">
+  <h1>如何在Mac上配置两个git帐号</h1>
+  <span class="post-date">Sat, Jun 2, 2018</span>
+  
+
+<p>前言：我想有相当一部分程序员拥有多个git帐号，比较常规的一种情况可能是两个git帐号：一个办公，一个私用。这就意味着我们需要用不同的帐号来操作不同的代码仓库（公司的和个人的）。本篇文章就想和大家分享一下，如何在本地配置两个不同用途的git帐号。</p>
+
+<p>大体步骤如下：
+&gt; 1. 清除git全局设置
+&gt; 2. 生成新的SSH keys
+&gt; 3. 添加并识别新的SSH keys私钥
+&gt; 4. 添加新的SSH keys到Git账号的SSH设置中</p>
+
+<h3 id="1-清除git的全局设置">1. 清除git的全局设置</h3>
+
+<p>查看目前的全局设置情况</p>
+
+<pre><code class="language-Shell">$ git config --list     
+                                                                                
+credential.helper=osxkeychain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+user.name=parkeryao
+user.email=parkeryao.work@gmail.com
+</code></pre>
+
+<p>取消相应帐号的全局设置</p>
+
+<pre><code class="language-Shell">$ git config --global --unset user.name &quot;parkeryao&quot;
+$ git config --global --unset user.email &quot;parkeryao.work@gmail.com&quot;
+</code></pre>
+
+<p>检查设置是否生效</p>
+
+<pre><code class="language-Shell">$ git config --list                                                                                      
+credential.helper=osxkeychain
+filter.lfs.clean=git-lfs clean -- %f
+filter.lfs.smudge=git-lfs smudge -- %f
+filter.lfs.process=git-lfs filter-process
+filter.lfs.required=true
+</code></pre>
+
+<h3 id="2-生成新的ssh-keys">2. 生成新的SSH keys</h3>
+
+<p>把之前和git相关的所有key都删除掉</p>
+
+<pre><code class="language-Shell">$ ssh-keygen -t rsa -C &quot;parkeryao.work@gmail.com&quot;
+$ ssh-keygen -t rsa -C &quot;gary.ylyao@gmail.com&quot;
+
+
+$ cd ~/.ssh
+$ ls -l                                                                                                  
+total 56
+-rw-------  1 Gary  staff  1675  6  2 21:38 id_rsa_gary.ylyao_github
+-rw-r--r--  1 Gary  staff   402  6  2 21:38 id_rsa_gary.ylyao_github.pub
+-rw-------  1 Gary  staff  1675  6  2 21:37 id_rsa_parkeryao.work_github
+-rw-r--r--  1 Gary  staff   406  6  2 21:37 id_rsa_parkeryao.work_github.pub
+-rw-------  1 Gary  staff  5843  3 30 12:24 known_hosts
+-rw-r--r--  1 Gary  staff  1331  3 17  2017 known_hosts.old
+</code></pre>
+
+<h3 id="3-添加并识别新的ssh-keys私钥">3. 添加并识别新的SSH keys私钥</h3>
+
+<pre><code class="language-Shell">$ ssh-agent bash                                                                                         
+bash-3.2$ ssh-add ~/.ssh/id_rsa_gary.ylyao_github
+Identity added: /Users/Gary/.ssh/id_rsa_gary.ylyao_github (/Users/Gary/.ssh/id_rsa_gary.ylyao_github)
+bash-3.2$ ssh-add ~/.ssh/id_rsa_parkeryao.work_github
+Identity added: /Users/Gary/.ssh/id_rsa_parkeryao.work_github (/Users/Gary/.ssh/id_rsa_parkeryao.work_github)
+</code></pre>
+
+<h3 id="4-添加新的ssh-keys到git账号的ssh设置中">4. 添加新的SSH keys到Git账号的SSH设置中</h3>
+
+<pre><code class="language-Shell">$ pbcopy &lt; id_rsa_gary.ylyao_github.pub
+$ pbcopy &lt; id_rsa_parkeryao.work_github.pub
+</code></pre>
+
+<h3 id="5-配置-ssh-config文件">5. 配置~/.ssh/config文件</h3>
+
+<pre><code class="language-Shell">#primary gitHub user(gary.ylyao@gmail.com)
+ Host git@github.com
+ HostName https://github.com
+ User git
+ IdentityFile ~/.ssh/id_rsa_gary.ylyao_github
+
+#secondary(personal) gitHub user(parkeryao.work@gmail.com)
+ Host git@github.com
+ HostName https://github.com
+ User git
+ IdentityFile ~/.ssh/id_rsa_parkeryao.work_github
+</code></pre>
+
+<p>The agent has no identities.</p>
+
+</div>
+
+
+    </div>
+
+    
+  </body>
+</html>
