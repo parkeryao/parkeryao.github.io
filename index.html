@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
 <head>
   <link href="http://gmpg.org/xfn/11" rel="profile">
   <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -67,15 +67,23 @@ git config user.email &quot;author@xxx.com&quot; git config user.name &quot;auth
   </h1>
   <span class="post-date">Sat, Jun 2, 2018</span>
   前言：我想有相当一部分程序员拥有多个git帐号，比较常规的一种情况可能是两个git帐号：一个办公，一个私用。这就意味着我们需要用不同的帐号来操作不同的代码仓库（公司的和个人的）。本篇文章就想和大家分享一下，如何在本地配置两个不同用途的git帐号。
-大体步骤如下： &gt; 1. 清除git全局设置 2. 生成新的SSH keys 3. 添加并识别新的SSH keys私钥 4. 添加新的SSH keys到Git账号的SSH设置中
-1. 清除git的全局设置 查看目前的全局设置情况
+大体步骤如下： &gt;
+ 清除git全局设置 生成新的SSH keys 添加并识别新的SSH keys私钥 添加新的SSH keys到Git账号的SSH设置中  1. 清除git的全局设置 查看目前的全局设置情况
 $ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true user.name=parkeryao user.email=parkeryao.work@gmail.com  取消相应帐号的全局设置
 $ git config --global --unset user.name &quot;parkeryao&quot; $ git config --global --unset user.email &quot;parkeryao.work@gmail.com&quot;  检查设置是否生效
-$ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true  2.
+$ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true  2. 生成新的SSH keys 把之前和git相关的所有key都删除掉
   
   <div class="read-more-link">
     <a href="https://parkeryao.github.io/post/how-to-configure-multiple-git-accounts/">Read More…</a>
   </div>
+  
+</div><div class="post">
+  <h1 class="post-title">
+    <a href="https://parkeryao.github.io/about/">About</a>
+  </h1>
+  <span class="post-date">Fri, Jun 1, 2018</span>
+  一只杂食的野生程序猿，很早之前以Java果腹，靠着『三驾马车』打怪练级，直到头顶青丝渐稀，自带光环（阳光下尤其锃光瓦亮）。几年奋斗下来，生活开始慢慢变好，开始注重健康和效率，前端给了那个时期我要的营养。再到后来，温饱问题已经不再是问题，我转而给别做食物吃，我给老板打理一下小作坊，一年出一两个产品，主要以快消移动端产品居多。现在除了打理作坊，平时也会把玩一些精致而优雅的东西，比如Golang。
+人生苦短，我用xxx
   
 </div>
 </div>

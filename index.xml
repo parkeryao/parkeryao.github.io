@@ -5,7 +5,7 @@
     <link>https://parkeryao.github.io/</link>
     <description>Recent content on 侬伢子</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <copyright>All rights reserved - 2018</copyright>
     <lastBuildDate>Mon, 04 Jun 2018 19:59:24 +0800</lastBuildDate>
     
@@ -33,11 +33,21 @@ git config user.email &amp;quot;author@xxx.com&amp;quot; git config user.name &a
       
       <guid>https://parkeryao.github.io/post/how-to-configure-multiple-git-accounts/</guid>
       <description>前言：我想有相当一部分程序员拥有多个git帐号，比较常规的一种情况可能是两个git帐号：一个办公，一个私用。这就意味着我们需要用不同的帐号来操作不同的代码仓库（公司的和个人的）。本篇文章就想和大家分享一下，如何在本地配置两个不同用途的git帐号。
-大体步骤如下： &amp;gt; 1. 清除git全局设置 2. 生成新的SSH keys 3. 添加并识别新的SSH keys私钥 4. 添加新的SSH keys到Git账号的SSH设置中
-1. 清除git的全局设置 查看目前的全局设置情况
+大体步骤如下： &amp;gt;
+ 清除git全局设置 生成新的SSH keys 添加并识别新的SSH keys私钥 添加新的SSH keys到Git账号的SSH设置中  1. 清除git的全局设置 查看目前的全局设置情况
 $ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true user.name=parkeryao user.email=parkeryao.work@gmail.com  取消相应帐号的全局设置
 $ git config --global --unset user.name &amp;quot;parkeryao&amp;quot; $ git config --global --unset user.email &amp;quot;parkeryao.work@gmail.com&amp;quot;  检查设置是否生效
-$ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true  2.</description>
+$ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true  2. 生成新的SSH keys 把之前和git相关的所有key都删除掉</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://parkeryao.github.io/about/</link>
+      <pubDate>Fri, 01 Jun 2018 23:42:42 +0800</pubDate>
+      
+      <guid>https://parkeryao.github.io/about/</guid>
+      <description>一只杂食的野生程序猿，很早之前以Java果腹，靠着『三驾马车』打怪练级，直到头顶青丝渐稀，自带光环（阳光下尤其锃光瓦亮）。几年奋斗下来，生活开始慢慢变好，开始注重健康和效率，前端给了那个时期我要的营养。再到后来，温饱问题已经不再是问题，我转而给别做食物吃，我给老板打理一下小作坊，一年出一两个产品，主要以快消移动端产品居多。现在除了打理作坊，平时也会把玩一些精致而优雅的东西，比如Golang。
+人生苦短，我用xxx</description>
     </item>
     
   </channel>
