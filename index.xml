@@ -2,22 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>侬伢子</title>
-    <link>https://parkeryao.github.io/</link>
+    <link>https:parkeryao.github.io/</link>
     <description>Recent content on 侬伢子</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>All rights reserved - 2018</copyright>
-    <lastBuildDate>Mon, 04 Jun 2018 19:59:24 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Jun 2018 00:13:28 +0800</lastBuildDate>
     
-	<atom:link href="https://parkeryao.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https:parkeryao.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>如何在Git Config中配置git帐号信息（作者信息）</title>
+      <link>https:parkeryao.github.io/post/config_git_accounts_in_git_config/</link>
+      <pubDate>Tue, 05 Jun 2018 00:13:28 +0800</pubDate>
+      
+      <guid>https:parkeryao.github.io/post/config_git_accounts_in_git_config/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>用不同的github帐号提交代码到不同的github仓库</title>
-      <link>https://parkeryao.github.io/post/specify_the_author_for_given_repository/</link>
+      <link>https:parkeryao.github.io/post/specify_the_author_for_given_repository/</link>
       <pubDate>Mon, 04 Jun 2018 19:59:24 +0800</pubDate>
       
-      <guid>https://parkeryao.github.io/post/specify_the_author_for_given_repository/</guid>
+      <guid>https:parkeryao.github.io/post/specify_the_author_for_given_repository/</guid>
       <description>我有两个github帐号，一个用于工作，一个用于个人，所以在提交不同的仓库代码时，需要用到不同的github帐号。
 虽然我已经按照上一篇文章的指引分别为两个github帐号建立了相关的key，但发现提交到github时，author不是我设置的两个github帐号中的任何一下，而是我本地的一个git帐号。
 问题的根源在于：没有为单个代码仓库设置git author，如下是具体设置办法：
@@ -28,10 +37,10 @@ git config user.email &amp;quot;author@xxx.com&amp;quot; git config user.name &a
     
     <item>
       <title>如何在Mac上配置两个git帐号</title>
-      <link>https://parkeryao.github.io/post/how-to-configure-multiple-git-accounts/</link>
+      <link>https:parkeryao.github.io/post/how-to-configure-multiple-git-accounts/</link>
       <pubDate>Sat, 02 Jun 2018 08:36:54 -0700</pubDate>
       
-      <guid>https://parkeryao.github.io/post/how-to-configure-multiple-git-accounts/</guid>
+      <guid>https:parkeryao.github.io/post/how-to-configure-multiple-git-accounts/</guid>
       <description>前言：我想有相当一部分程序员拥有多个git帐号，比较常规的一种情况可能是两个git帐号：一个办公，一个私用。这就意味着我们需要用不同的帐号来操作不同的代码仓库（公司的和个人的）。本篇文章就想和大家分享一下，如何在本地配置两个不同用途的git帐号。
 大体步骤如下： &amp;gt;
  清除git全局设置 生成新的SSH keys 添加并识别新的SSH keys私钥 添加新的SSH keys到Git账号的SSH设置中  1. 清除git的全局设置 查看目前的全局设置情况
@@ -42,10 +51,10 @@ $ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean
     
     <item>
       <title>About</title>
-      <link>https://parkeryao.github.io/about/</link>
+      <link>https:parkeryao.github.io/about/</link>
       <pubDate>Fri, 01 Jun 2018 23:42:42 +0800</pubDate>
       
-      <guid>https://parkeryao.github.io/about/</guid>
+      <guid>https:parkeryao.github.io/about/</guid>
       <description>一只杂食的野生程序猿，很早之前以Java果腹，靠着『三驾马车』打怪练级，直到头顶青丝渐稀，自带光环（阳光下尤其锃光瓦亮）。几年奋斗下来，生活开始慢慢变好，开始注重健康和效率，前端给了那个时期我要的营养。再到后来，温饱问题已经不再是问题，我转而给别做食物吃，我给老板打理一下小作坊，一年出一两个产品，主要以快消移动端产品居多。现在除了打理作坊，平时也会把玩一些精致而优雅的东西，比如Golang。
 人生苦短，我用xxx</description>
     </item>
