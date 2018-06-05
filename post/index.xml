@@ -22,10 +22,10 @@
 Git 提供了一个叫做 git config 的工具，专门用来配置或读取相应的工作环境变量，这些变量可以存放在以下三个不同的地方：
  /etc/gitconfig文件：保存系统中所有用户都适用的配置，如果从未做过该项的设置，那此文件可能不存在。 ~/.gitconfig文件：该文件处理用户根目录下，保存该用户的配置。 .git/config文件：该文件一般位于正在被git管理的文件目录中，所以该文件中的配置只对当前目录（项目/仓库）有效。  1. 环境变量可见性 用户可以在上述三处定义各种环境变量，如果有变量同名，下层会覆盖上层的，如.git/config里面的配置就会覆盖~/.gitconfig中的配置。
 2. 读写配置信息 最直接的读取和更改这些配置的办法是去修改相对应该的配置文件（如上所述），但git也提供了一系统的命令让你完成相应的操作，如：
- 读取所有git配置信息（上述三种配置的聚合，但这里只是简单的聚合，如果不同配置文件中同名的配置，此命令输出的结果不会去重） Shell git config --list  读取系统的所有git配置信息 ```Shell git config &amp;ndash;list &amp;ndash;system  #如果从未设置过系统级别的配置，此文件可能不存在，会出现如下错误，属正常现象 git config &amp;ndash;list &amp;ndash;system fatal: unable to read config file &amp;lsquo;/etc/gitconfig&amp;rsquo;: No such file or directory
+ 读取所有git配置信息（上述三种配置的聚合，但这里只是简单的聚合，如果不同配置文件中同名的配置，此命令输出的结果不会去重） Shell git config --list  读取系统的所有git配置信息 ```Shell git config &amp;ndash;list &amp;ndash;system  // 如果从未设置过系统级别的配置，此文件可能不存在，会出现如下错误，属正常现象 git config &amp;ndash;list &amp;ndash;system fatal: unable to read config file &amp;lsquo;/etc/gitconfig&amp;rsquo;: No such file or directory
 * 读取当前用户的所有git配置信息 ```Shell git config --list --global   读取当前项目的所有git配置信息
 cat .git/config  读取某一项git配置项的信息
-git config user.name git config --system user.name git config --global user.</description>
+git config user.name git config --system user.</description>
     </item>
     
     <item>
