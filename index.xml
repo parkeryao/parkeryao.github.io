@@ -18,7 +18,14 @@
       <pubDate>Tue, 05 Jun 2018 00:13:28 +0800</pubDate>
       
       <guid>https://parkeryao.github.io/post/config_git_accounts_in_git_config/</guid>
-      <description></description>
+      <description>在解释如何配置git帐号信息之前，我们先来了解一下git如何做各种配置的。
+Git 提供了一个叫做 git config 的工具，专门用来配置或读取相应的工作环境变量，这些变量可以存放在以下三个不同的地方：
+ /etc/gitconfig文件：保存系统中所有用户都适用的配置，如果从未做过该项的设置，那此文件可能不存在。 ~/.gitconfig文件：该文件处理用户根目录下，保存该用户的配置。 .git/config文件：该文件一般位于正在被git管理的文件目录中，所以该文件中的配置只对当前目录（项目/仓库）有效。  1. 环境变量可见性 用户可以在上述三处定义各种环境变量，如果有变量同名，下层会覆盖上层的，如.git/config里面的配置就会覆盖~/.gitconfig中的配置。
+2. 读写配置信息 最直接的读取和更改这些配置的办法是去修改相对应该的配置文件（如上所述），但git也提供了一系统的命令让你完成相应的操作，如：
+ 读取所有git配置信息（上述三种配置的聚合，但这里只是简单的聚合，如果不同配置文件中同名的配置，此命令输出的结果不会去重） Shell git config --list  读取系统的所有git配置信息 ```Shell git config &amp;ndash;list &amp;ndash;system  #如果从未设置过系统级别的配置，此文件可能不存在，会出现如下错误，属正常现象 git config &amp;ndash;list &amp;ndash;system fatal: unable to read config file &amp;lsquo;/etc/gitconfig&amp;rsquo;: No such file or directory
+* 读取当前用户的所有git配置信息 ```Shell git config --list --global   读取当前项目的所有git配置信息
+cat .git/config  读取某一项git配置项的信息
+git config user.name git config --system user.name git config --global user.</description>
     </item>
     
     <item>
@@ -31,7 +38,7 @@
 虽然我已经按照上一篇文章的指引分别为两个github帐号建立了相关的key，但发现提交到github时，author不是我设置的两个github帐号中的任何一下，而是我本地的一个git帐号。
 问题的根源在于：没有为单个代码仓库设置git author，如下是具体设置办法：
 先查看有无设置git的author信息：
-git config -l Gary@GarydeMacBook-Air ... user.email=xxx@xxx.com user.name=xxx  并确认此处设置的author是不是你想用于提交代码的github帐号，如果不是，通过下面方法重新设置：
+git config -l ... user.email=xxx@xxx.com user.name=xxx  并确认此处设置的author是不是你想用于提交代码的github帐号，如果不是，通过下面方法重新设置：
 git config user.email &amp;quot;author@xxx.com&amp;quot; git config user.name &amp;quot;author&amp;quot;  </description>
     </item>
     
@@ -46,7 +53,7 @@ git config user.email &amp;quot;author@xxx.com&amp;quot; git config user.name &a
  清除git全局设置 生成新的SSH keys 添加并识别新的SSH keys私钥 添加新的SSH keys到Git账号的SSH设置中  1. 清除git的全局设置 查看目前的全局设置情况
 $ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true user.name=parkeryao user.email=parkeryao.work@gmail.com  取消相应帐号的全局设置
 $ git config --global --unset user.name &amp;quot;parkeryao&amp;quot; $ git config --global --unset user.email &amp;quot;parkeryao.work@gmail.com&amp;quot;  检查设置是否生效
-$ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true  2. 生成新的SSH keys 把之前和git相关的所有key都删除掉</description>
+$ git config --list credential.helper=osxkeychain filter.lfs.clean=git-lfs clean -- %f filter.lfs.smudge=git-lfs smudge -- %f filter.lfs.process=git-lfs filter-process filter.lfs.required=true  2. 生成新的SSH keys 把之前和git相关的所有key都删除掉，这些key都位于~/.</description>
     </item>
     
     <item>

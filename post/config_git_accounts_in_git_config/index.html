@@ -52,6 +52,87 @@
   <h1>如何在Git Config中配置git帐号信息（作者信息）</h1>
   <span class="post-date">Tue, Jun 5, 2018</span>
   
+
+<p>在解释如何配置git帐号信息之前，我们先来了解一下git如何做各种配置的。</p>
+
+<p>Git 提供了一个叫做 git config 的工具，专门用来配置或读取相应的工作环境变量，这些变量可以存放在以下三个不同的地方：</p>
+
+<ul>
+<li><code>/etc/gitconfig</code>文件：保存系统中所有用户都适用的配置，如果从未做过该项的设置，那此文件可能不存在。</li>
+<li><code>~/.gitconfig</code>文件：该文件处理用户根目录下，保存该用户的配置。</li>
+<li><code>.git/config</code>文件：该文件一般位于正在被git管理的文件目录中，所以该文件中的配置只对当前目录（项目/仓库）有效。</li>
+</ul>
+
+<h2 id="1-环境变量可见性">1. 环境变量可见性</h2>
+
+<p>用户可以在上述三处定义各种环境变量，如果有变量同名，下层会覆盖上层的，如<code>.git/config</code>里面的配置就会覆盖<code>~/.gitconfig</code>中的配置。</p>
+
+<h2 id="2-读写配置信息">2. 读写配置信息</h2>
+
+<p>最直接的读取和更改这些配置的办法是去修改相对应该的配置文件（如上所述），但git也提供了一系统的命令让你完成相应的操作，如：</p>
+
+<ul>
+<li>读取所有git配置信息（上述三种配置的聚合，但这里只是简单的聚合，如果不同配置文件中同名的配置，此命令输出的结果不会去重）
+<code>Shell
+git config --list  
+</code></li>
+<li>读取系统的所有git配置信息
+```Shell
+git config &ndash;list &ndash;system</li>
+</ul>
+
+<p>#如果从未设置过系统级别的配置，此文件可能不存在，会出现如下错误，属正常现象
+git config &ndash;list &ndash;system
+fatal: unable to read config file &lsquo;/etc/gitconfig&rsquo;: No such file or directory</p>
+
+<pre><code>* 读取当前用户的所有git配置信息
+```Shell
+git config --list --global
+</code></pre>
+
+<ul>
+<li><p>读取当前项目的所有git配置信息</p>
+
+<pre><code class="language-Shell">cat .git/config
+</code></pre></li>
+
+<li><p>读取某一项git配置项的信息</p>
+
+<pre><code class="language-Shell">git config user.name 
+git config --system user.name 
+git config --global user.name 
+</code></pre></li>
+</ul>
+
+<p>那如何进行设置呢？其实也比较简单：</p>
+
+<pre><code class="language-Shell">git config --system user.name &quot;John Doe&quot;
+git config --global user.name &quot;John Doe&quot;
+git config user.name &quot;John Doe&quot;
+</code></pre>
+
+<blockquote>
+<p>注意：<code>git config user.name &quot;John Doe&quot;</code>该设置是针对当前git项目，如果当前并不是一个git目录（没有受git管理），会报错：<code>fatal: not in a git directory</code></p>
+</blockquote>
+
+<h2 id="3-配置帐号信息">3. 配置帐号信息</h2>
+
+<p>有了上面的铺垫，配置帐号信息就比较简单了，毕竟帐号信息只是上述各种配置项的一种而已。但此处要注意的是：你是想要配置一个全局的帐号（以后所有项目的git操作都使用同一帐号），而是想为某一个项目单独指定一个git帐号。</p>
+
+<ul>
+<li><p>配置全局帐号（对当前用户有效）</p>
+
+<pre><code class="language-Shell">git config --global user.name &quot;xxx&quot;
+git config --global user.email &quot;xxx@xxx.com&quot;
+</code></pre></li>
+
+<li><p>为当前项目指定git帐号（前提是执行当前配置的当前目录是一个git目录）</p>
+
+<pre><code class="language-Shell">git config user.name &quot;xxx&quot;
+git config user.email &quot;xxx@xxx.com&quot;
+</code></pre></li>
+</ul>
+
 </div>
 
 <h2>Comments</h2>

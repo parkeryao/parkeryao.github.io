@@ -98,7 +98,9 @@ filter.lfs.required=true
 
 <h3 id="2-生成新的ssh-keys">2. 生成新的SSH keys</h3>
 
-<p>把之前和git相关的所有key都删除掉</p>
+<p>把之前和git相关的所有key都删除掉，这些key都位于<code>~/.ssh</code>目录下</p>
+
+<p>为以下两个不同的帐号生成相应的key：</p>
 
 <pre><code class="language-Shell">$ ssh-keygen -t rsa -C &quot;parkeryao.work@gmail.com&quot;
 $ ssh-keygen -t rsa -C &quot;gary.ylyao@gmail.com&quot;
@@ -129,6 +131,8 @@ Identity added: /Users/Gary/.ssh/id_rsa_parkeryao.work_github (/Users/Gary/.ssh/
 <pre><code class="language-Shell">$ pbcopy &lt; id_rsa_gary.ylyao_github.pub
 $ pbcopy &lt; id_rsa_parkeryao.work_github.pub
 </code></pre>
+
+<p>通过上面的命令拷贝key的内容，然后去到github的帐户设置中心：<code>Settings -&gt; SSH and GPG keys -&gt; New SSH key</code>，添加key</p>
 
 <h3 id="5-配置-ssh-config文件">5. 配置~/.ssh/config文件</h3>
 
